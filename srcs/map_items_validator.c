@@ -12,6 +12,11 @@
 
 #include "../includes/cub3d.h"
 
+char	chars_validator(char c)
+{
+	return (c == '0' || c == '1' || c == 'N');
+}
+
 int	player_validator(t_cub *cub)
 {
 	int	x;

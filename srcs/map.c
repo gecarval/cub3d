@@ -35,3 +35,27 @@ char	**map_copy(t_cub *cub)
 	}
 	return (copy);
 }
+
+int	map_validator(t_cub *cub, char *map_file)
+{
+	int	x;
+	int	y;
+	(void)map_file;
+
+	y = -1;
+	if (!player_validator)
+		simple_free(cub, "Error!\nInvalid number of player.\n");
+	while (++y < cub->map_h)
+	{
+		x = -1;
+		while (++x < cub->map_w)
+		{
+			if (!chars_validator(cub->map[y][x]))
+			{
+				simple_free(cub, "Error!\nMap contains invalid characters.\n");
+				return (0);
+			}
+		}
+	}
+	return (0);
+}

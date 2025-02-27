@@ -53,9 +53,13 @@
 # define RIGHT_KEY 65363
 
 int     is_map_empty(t_cub *cub);
+int	player_validator(t_cub *cub);
+int	map_validator(t_cub *cub, char *map_file);
 
 char	**map_copy(t_cub *cub);
 char	*get_next_line(int fd);
+char	chars_validator(char c);
+
 
 void	simple_free(t_cub *cub, char *str);
 
