@@ -23,28 +23,36 @@ SRCS = 	srcs/all_frees.c \
 	srcs/map.c \
 	srcs/validator_args.c
 
-LIBFT = libft/libft.a
-LIBRARIES = -I./includes -L./libft ./$(LIBFT)
-
 OBJ = $(SRCS:.c=.o)
 
-all: $(MINILIBX) $(LIBFT) $(NAME)
+LIBFT_DIR = ./libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
-$(MINILIBX):
-	make -C $$((ls | cat | grep minilib))
+MINILIBX_DIR = ./minilibx-linux
+MINILIBX = $(MINILIBX_DIR)/libmlx.a
+
+MLX_FLAGS = $(MINILIBX_DIR) -lX11 -lXext -lm
+
+INCLUDES = -I./includes -I$(LIBFT_DIR) -I$(MINILIBX_DIR)
+
+all: $(LIBFT) $(MINILIBX) $(NAME)
 
 $(LIBFT):
-	make -C libft
+	make -C $(LIBFT_DIR)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBRARIES)
+$(MINILIBX):
+	make -C $(MINILIBX_DIR)
+
+$(NAME): $(OBJ) $(LIBFT) $(MINILIBX)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJ) $(LIBFT) $(MINILIBX) $(MLX_FLAGS)
 clean:
-	make clean -C libft
+	make -C $(LIBFT_DIR) clean
+	make -C $(MINILIBX_DIR) clean
 	rm -f $(OBJ)
 
 fclean: clean
-	make fclean -C libft
-	rm -f $(OBJ) $(NAME)
+	make -C $(LIBFT) fclean
+	rm -f $(NAME)
 
 re: fclean all
 

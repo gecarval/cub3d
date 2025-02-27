@@ -52,10 +52,12 @@
 // # define DOWN_KEY 65364
 # define RIGHT_KEY 65363
 
-char	*get_next_line(int fd);
 int     is_map_empty(t_cub *cub);
-void	simple_free(t_cub *cub, char *str);
+
 char	**map_copy(t_cub *cub);
+char	*get_next_line(int fd);
+
+void	simple_free(t_cub *cub, char *str);
 
 
 #endif

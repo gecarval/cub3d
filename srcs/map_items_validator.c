@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_items_validator.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akupesa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 13:12:50 by akupesa           #+#    #+#             */
-/*   Updated: 2025/02/25 13:12:51 by akupesa          ###   ########.fr       */
+/*   Created: 2025/02/27 10:05:27 by akupesa           #+#    #+#             */
+/*   Updated: 2025/02/27 10:05:30 by akupesa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int ac, char **av)
+int	player_validator(t_cub *cub)
 {
-	(void)ac;
-	(void)av;
-	t_cub	*cub;
+	int	x;
+	int	y;
+	int	player_counter;
 
-	cub = malloc(sizeof(t_cub));
-	if (cub == NULL)
+	y = -1;
+	player_counter = 0;
+	while (++y < cub->map_h)
+	{
+		x = -1;
+		while (++x < cub->map_w)
+		{
+			if (cub->map[y][x] == 'N')
+				player_counter++;
+		}
+		
+	}
+	if (player_counter != 1)
 		return (FALSE);
-	cub->mlx = mlx_init();
-	cub->window = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
 	return (TRUE);
 }
