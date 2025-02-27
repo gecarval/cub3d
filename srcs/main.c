@@ -22,6 +22,17 @@ int	main(int ac, char **av)
 	if (cub == NULL)
 		return (FALSE);
 	cub->mlx = mlx_init();
+	if (cub->mlx == NULL)
+	{
+		simple_free(cub, "Error!\nMLX initialization failed.\n");
+		return (1);
+	}
 	cub->window = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
+	{
+		simple_free(cub, "Error!\nWindow creation failed.\n");
+		return (1);
+	}
+	mlx_destroy_window(cub->mlx, cub->window);
+	free(cub);
 	return (TRUE);
 }

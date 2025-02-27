@@ -38,8 +38,8 @@
 # define FALSE 1
 # define BUFFER_SIZE 42
 
-# define HEIGHT 720
 # define WIDTH 1280
+# define HEIGHT 720
 
 # define ESC 65307
 

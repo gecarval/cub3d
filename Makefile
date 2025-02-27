@@ -19,6 +19,7 @@ SRCS = 	srcs/all_frees.c \
 	srcs/flood_fill_validator.c \
 	srcs/get_next_line.c \
 	srcs/main.c \
+	srcs/map_items_validator.c \
 	srcs/map_reader.c \
 	srcs/map.c \
 	srcs/validator_args.c
@@ -31,9 +32,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 MINILIBX_DIR = ./minilibx-linux
 MINILIBX = $(MINILIBX_DIR)/libmlx.a
 
-MLX_FLAGS = $(MINILIBX_DIR) -lX11 -lXext -lm
-
 INCLUDES = -I./includes -I$(LIBFT_DIR) -I$(MINILIBX_DIR)
+MLX_FLAGS = -L$(MINILIBX_DIR) -lmlx -lX11 -lXext -lm
 
 all: $(LIBFT) $(MINILIBX) $(NAME)
 
@@ -44,14 +44,14 @@ $(MINILIBX):
 	make -C $(MINILIBX_DIR)
 
 $(NAME): $(OBJ) $(LIBFT) $(MINILIBX)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJ) $(LIBFT) $(MINILIBX) $(MLX_FLAGS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJ) $(LIBFT) $(MLX_FLAGS)
 clean:
 	make -C $(LIBFT_DIR) clean
 	make -C $(MINILIBX_DIR) clean
 	rm -f $(OBJ)
 
 fclean: clean
-	make -C $(LIBFT) fclean
+	make -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all
