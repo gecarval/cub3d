@@ -12,6 +12,7 @@
 
 #include "../includes/cub3d.h"
 
+
 int	main(int ac, char **av)
 {
 	(void)ac;
@@ -28,11 +29,13 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	cub->window = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
+	if (cub->window == NULL)
 	{
 		simple_free(cub, "Error!\nWindow creation failed.\n");
 		return (1);
 	}
-	mlx_destroy_window(cub->mlx, cub->window);
+	mlx_loop(cub->mlx);
+	//mlx_destroy_window(cub->mlx, cub->window);
 	free(cub);
 	return (TRUE);
 }

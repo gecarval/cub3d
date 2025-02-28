@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validator_args.c                                   :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akupesa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 15:09:20 by akupesa           #+#    #+#             */
-/*   Updated: 2025/02/10 15:09:22 by akupesa          ###   ########.fr       */
+/*   Created: 2025/02/28 10:22:52 by akupesa           #+#    #+#             */
+/*   Updated: 2025/02/28 10:22:54 by akupesa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	extension_validator(t_cub *cub, char *file_name)
+
+
+void	loop(t_cub *cub)
 {
-	int	len;
-
-	len = ft_strlen(file_name);
-	if (file_name[len - 4] == '.'
-		&& file_name[len - 3] == 'c'
-		&& file_name[len - 2] == 'u'
-		&& file_name[len - 1] == 'b')
-	{
-		return (1);
-	}
-	else
-	{
-		simple_free(cub, "Error\nInvalid file extension.\n");
-		return (0);
-	}
+	mlx_hook(cub->window, 17, 0, just_free, cub);
 }
-
-int	args_validator(t_cub *cub)

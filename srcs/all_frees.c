@@ -21,3 +21,8 @@ void	simple_free(t_cub *cub, char *str)
 	exit (0);
 }
 
+void	just_free(t_cub *cub)
+{
+	free(cub);
+	exit(0);
+}

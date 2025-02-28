@@ -60,7 +60,8 @@ char	**map_copy(t_cub *cub);
 char	*get_next_line(int fd);
 char	chars_validator(char c);
 
-
+void	loop(t_cub *cub);
+void	just_free(t_cub *cub);
 void	simple_free(t_cub *cub, char *str);
 
 
